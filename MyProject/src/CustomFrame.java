@@ -40,13 +40,17 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 	Font fnt = new Font("굴림체",Font.BOLD,14);
 	
 	//// 중앙 패널
-	JPanel centerPane = new JPanel();
-		CustomAirlinePlan plan = new CustomAirlinePlan(); //항공일정
-		CustomReservation reservation = new CustomReservation(); // 예약하기
-		CustomMyPage mypage = new CustomMyPage(); // 마이페이지
-			CustomMileage mileage = new CustomMileage(); // 마이페이지 - 마일리지
-			CustomRevise revise = new CustomRevise(); // 마이페이지 - 회원정보 수정
-	
+	static JPanel centerPane = new JPanel();
+		static CustomAirlinePlan plan = new CustomAirlinePlan(); //항공일정
+		static CustomReservation reservation = new CustomReservation(); // 예약하기
+			static CustomReservation2 reservation2 = new CustomReservation2();
+			static CustomReservation3 reservation3 = new CustomReservation3();
+			static CustomReservation4 reservation4 = new CustomReservation4();
+		static CustomMyPage mypage = new CustomMyPage(); // 마이페이지
+			static CustomMileage mileage = new CustomMileage(); // 마이페이지 - 마일리지
+			static CustomRevise revise = new CustomRevise(); // 마이페이지 - 회원정보 수정
+	static JPanel visiblePane[] = {plan,reservation,reservation2,reservation3,mypage,mileage,revise,reservation4};
+			
 	// 하단패널
 	JPanel clockPane = new JPanel(new BorderLayout());
 		JPanel reClock = new JPanel();
@@ -77,7 +81,7 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 	String countryImg[] = {"flag/uk.png","flag/franch.png","flag/russia.png","flag/uae.png","flag/indonesia.png"
 			, "flag/shanghai.png", "flag/sydney.png", "flag/canada.png","flag/america.png","flag/mexico.png"
 			, "flag/america.png","flag/sangpaulo.png"};
-	CardLayout card = new CardLayout();
+
 	public CustomFrame() {
 		// 기본화면 레이아웃
 		setLayout(new BorderLayout());
@@ -131,15 +135,11 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		add("North",northPane);
 		
 		//중앙 프레임
-		centerPane.setLayout(card);
-		centerPane.add(plan,"plan");
-		centerPane.add(reservation,"reservation");
-		centerPane.add(mypage,"mypage");
-		centerPane.add(mileage,"mileage");
-		centerPane.add(revise,"revise");
-		card.show(centerPane, "plan");
 		add("Center",centerPane);
-		
+		centerPane.setBackground(Color.white);
+		centerPane.setLayout(new BorderLayout());
+			centerPane.add(plan);
+			
 		//남쪽 프레임
 		clockPane.setLayout(new GridLayout(0,2));
 		clockPane.setBorder(new LineBorder(Color.lightGray, 1));
@@ -148,6 +148,7 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		add("South",clockPane);
 		
 		// 프레임 기본 설정
+		setTitle("CLOUD AIR");
 		setIconImage(AirlineMain.im);
 		setSize(1000,800);
 		setVisible(true);
@@ -220,9 +221,13 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		if(obj instanceof JMenuItem) {// JMenuItem 일 경우
 			String click = ae.getActionCommand();
 			if(click.equals("마일리지 사용내역")) {
-				changeMethod("mileage",mileage,mileage.main);
+				visibleMethod();
+				mileage.setVisible(true);
+				centerPane.add(mileage);
 			} else if(click.equals("회원정보 수정")) {
-				card.show(centerPane, "revise");
+				visibleMethod();
+				revise.setVisible(true);
+				centerPane.add(revise);
 			} else if(click.equals("고객센터")) {
 				
 			}
@@ -230,31 +235,12 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		
 	}
 	
-	public void changeMethod(String str,JPanel mp, JPanel cp,JPanel sp) {
-		getContentPane().removeAll();
-		getContentPane().add("North",northPane);
-		getContentPane().add("Center",centerPane);
-		getContentPane().add("South",clockPane);
-		card.show(centerPane, str);
-		mp.removeAll();
-		mp.add("Center",cp);
-		mp.add("South",sp);
-		revalidate();
-		repaint();
+	public static void visibleMethod() {
+		for(int i=0; i<visiblePane.length;i++) {
+			visiblePane[i].setVisible(false);
+		}
+		
 	}
-	
-	public void changeMethod(String str,JPanel mp, JPanel cp) {
-		getContentPane().removeAll();
-		getContentPane().add("North",northPane);
-		getContentPane().add("Center",centerPane);
-		getContentPane().add("South",clockPane);
-		card.show(centerPane, str);
-		mp.removeAll();
-		mp.add("Center",cp);
-		revalidate();
-		repaint();
-	}
-	
 	// 마우스 이벤트 ( 라벨 )
 	@Override
 	public void mouseClicked(MouseEvent me) {
@@ -264,12 +250,16 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 			String menuStr = click.getText();
 			if(click instanceof JLabel) {
 				if(menuStr.equals("예 약 하 기")) {
-					changeMethod("reservation", reservation, reservation.changePane, reservation.btnMainPane);
+					visibleMethod();
+					reservation.setVisible(true);
+					centerPane.add(reservation);
+					
 				} else if(menuStr.equals("예 약 조 회")) {
 					
 				} else if(menuStr.equals("마 이 페 이 지")) {
-					changeMethod("mypage",mypage,mypage.main);
-					card.show(centerPane, "mypage");
+					visibleMethod();
+					mypage.setVisible(true);
+					centerPane.add(mypage);
 					myPop.show(mypageLbl, me.getX(), me.getY());
 				} else if(menuStr.equals("로 그 아 웃")) {
 					dispose();

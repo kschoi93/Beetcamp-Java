@@ -111,9 +111,8 @@ public class CustomRevise extends JPanel implements ActionListener{
 			if(btn.equals("저장")) {
 				
 			} else if(btn.equals("취소")) {
-				for(int i=0; i<tf.length;i++) {
-					tf[i].setText("");
-				}
+				this.setVisible(false);
+				CustomFrame.plan.setVisible(true);
 			} else if(btn.equals("회원탈퇴")) {
 				String msg = "마일리지를 포함한\n고객의 모든 정보가 삭제됩니다.\n탈퇴하시겠습니까?";
 				int state = JOptionPane.showOptionDialog(this, msg, "회원탈퇴", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null,null, obj);

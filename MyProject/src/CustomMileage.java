@@ -91,10 +91,8 @@ public class CustomMileage extends JPanel implements ActionListener{
 		if(obj instanceof JButton) {
 			String str = ae.getActionCommand();
 			if(str.equals("돌아가기")) {
-				removeAll();
-				add("Center",plan);
-				revalidate();
-				repaint();
+				this.setVisible(false);
+				CustomFrame.plan.setVisible(true);
 			}
 		}
 	}

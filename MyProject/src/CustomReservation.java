@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -46,14 +47,10 @@ public class CustomReservation extends JPanel implements ActionListener{
 		JLabel babyLbl = new JLabel("소아");
 		JComboBox<Integer> babyAge = new JComboBox<Integer>();
 	
-	JPanel btnMainPane = new JPanel();
-		JPanel btnPane = new JPanel();
-		JButton nextBtn = new JButton("다음");
-		JButton cancelBtn = new JButton("예약취소");
-
+	JButton cancelBtn = new JButton("예약취소");
+	JButton nextBtn = new JButton("다음단계");
 	
 	JPanel main = new JPanel();
-	CustomReservation2 reservation2 = new CustomReservation2();
 	int x, x1;
 	public CustomReservation() {
 		setLayout(new BorderLayout());
@@ -113,31 +110,21 @@ public class CustomReservation extends JPanel implements ActionListener{
 		audultAge.setFont(fnt);
 		babyLbl.setFont(fnt);
 		
-		changePane.add(nextBtn).setBounds(400,500,100,30); 
-		changePane.add(cancelBtn).setBounds(530,500,100,30);
+		changePane.add(cancelBtn).setBounds(400,500,100,30);
+		changePane.add(nextBtn).setBounds(530,500,100,30); 
 		
-		/// 버튼 패널 main으로 감싸고 아래 간격을 주고 그 안에 또 다른 btn 패널을 넣는다
-		add("South", btnMainPane);
-		btnMainPane.setLayout(new BorderLayout(0,30));
-		btnMainPane.add("South",new JLabel());
-		btnMainPane.add(btnPane);
-		btnMainPane.setBackground(Color.white);
-		
-		btnPane.add(nextBtn);
-		btnPane.add(cancelBtn);
-		btnPane.setBackground(Color.white);
-		
-		nextBtn.setFont(fnt);
-		nextBtn.setBackground(new Color(0,130,255));
-		nextBtn.setForeground(Color.white);
 		cancelBtn.setFont(fnt);
 		cancelBtn.setBackground(new Color(0,130,255));
 		cancelBtn.setForeground(Color.white);
-		
+		nextBtn.setFont(fnt);
+		nextBtn.setBackground(new Color(0,130,255));
+		nextBtn.setForeground(Color.white);
+			
 		setBackground(Color.white);
 		setSize(1000,800);
 		setVisible(true);
 		
+		cancelBtn.addActionListener(this);
 		nextBtn.addActionListener(this);
 	}
 	
@@ -145,12 +132,13 @@ public class CustomReservation extends JPanel implements ActionListener{
 		Object obj = ae.getSource();
 		if(obj instanceof JButton) {
 			String btn = ae.getActionCommand();
-			if(btn.equals("다음")) {
-				removeAll();
-				add("Center",reservation2.changePane);
-				add("South",reservation2.btnMainPane);
-				revalidate();
-				repaint();
+			if(btn.equals("예약취소")) {
+				this.setVisible(false);
+				CustomFrame.plan.setVisible(true);
+			} else if(btn.equals("다음단계")) {
+				this.setVisible(false);
+				CustomFrame.reservation2.setVisible(true);
+				CustomFrame.centerPane.add(CustomFrame.reservation2);
 			}
 		}
 	}

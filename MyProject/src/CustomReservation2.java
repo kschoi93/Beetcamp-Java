@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CustomReservation2 extends JPanel{
+public class CustomReservation2 extends JPanel implements ActionListener{
 	Font fnt = new Font("굴림체",Font.BOLD,14);
 	JPanel changePane = new JPanel();
 		JPanel centerPane = new JPanel();
@@ -38,21 +40,23 @@ public class CustomReservation2 extends JPanel{
 				DefaultTableModel model = new DefaultTableModel(str,modelTitle);
 				JTable tbl = new JTable(model);
 				JScrollPane sp = new JScrollPane(tbl);
-			
-	JPanel btnMainPane = new JPanel();
 		JPanel btnPane = new JPanel();
-			JButton nextBtn = new JButton("예약취소");
-			JButton cancelBtn = new JButton("다음");
+			JButton cancelBtn = new JButton("예약취소");
+			JButton nextBtn = new JButton("다음단계");
+		JPanel test = new JPanel();
+	
+		CustomReservation3 reservation3 = new CustomReservation3();
 	public CustomReservation2() {
 		setLayout(new BorderLayout());
 		
 		// 전환되는 패널
 		add("North",changePane);
-		changePane.setLayout(new BorderLayout(200,100));
+		changePane.setLayout(new BorderLayout(200,30));
 		changePane.setBackground(Color.white);
 		changePane.add("North",new JLabel());
 		changePane.add("East",new JLabel());
 		changePane.add("West",new JLabel());
+		changePane.add("South",new JLabel());
 		changePane.add("Center",centerPane);
 			centerPane.setLayout(new BorderLayout());
 			centerPane.setBackground(Color.white);
@@ -96,31 +100,40 @@ public class CustomReservation2 extends JPanel{
 			tablePane.setBackground(Color.white);
 				tablePane.add(sp);
 				sp.setFont(fnt);
-		
-		
-		/// 버튼 패널 main으로 감싸고 아래 간격을 주고 그 안에 또 다른 btn 패널을 넣는다
-		add("South", btnMainPane);
-		btnMainPane.setBackground(Color.white);
-		btnMainPane.setLayout(new BorderLayout(0,50));
-		btnMainPane.add("North",new JLabel());
-		btnMainPane.add("South",new JLabel());
-		btnMainPane.add(btnPane);
-		btnMainPane.setBackground(Color.white);
-		
-		btnPane.add(nextBtn);
-		btnPane.add(cancelBtn);
-		btnPane.setBackground(Color.white);
-		
-		nextBtn.setFont(fnt);
-		nextBtn.setBackground(new Color(0,130,255));
-		nextBtn.setForeground(Color.white);
-		cancelBtn.setFont(fnt);
-		cancelBtn.setBackground(new Color(0,130,255));
-		cancelBtn.setForeground(Color.white);
-		
+			
+			centerPane.add("South",btnPane);
+				btnPane.setLayout(new FlowLayout(FlowLayout.CENTER,50,10));
+				btnPane.setBackground(Color.white);
+				btnPane.add(cancelBtn);
+					cancelBtn.setFont(fnt);
+					cancelBtn.setBackground(new Color(0,130,255));
+					cancelBtn.setForeground(Color.white);
+					
+				btnPane.add(nextBtn);
+					nextBtn.setFont(fnt);
+					nextBtn.setBackground(new Color(0,130,255));
+					nextBtn.setForeground(Color.white);
+					
 		setBackground(Color.white);
 		setSize(1000,800);
 		setVisible(true);
+		cancelBtn.addActionListener(this);
+		nextBtn.addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent ae){
+		Object obj = ae.getSource();
+		if(obj instanceof JButton) {
+			String str = ae.getActionCommand();
+			if(str.equals("예약취소")) {
+				this.setVisible(false);
+				CustomFrame.plan.setVisible(true);
+			} else if(str.equals("다음단계")) {
+				this.setVisible(false);
+				CustomFrame.reservation3.setVisible(true);
+				CustomFrame.centerPane.add(CustomFrame.reservation3);
+			}
+		}
 	}
 
 }

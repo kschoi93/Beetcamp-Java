@@ -114,10 +114,8 @@ public class CustomMyPage extends JPanel implements ActionListener{
 		if(obj instanceof JButton) {
 			String str = ae.getActionCommand();
 			if(str.equals("돌아가기")){
-				removeAll();
-				add(cp);
-				revalidate();
-				repaint();
+				this.setVisible(false);
+				CustomFrame.plan.setVisible(true);
 			}
 		}
 	}

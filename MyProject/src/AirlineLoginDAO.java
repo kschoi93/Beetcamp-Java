@@ -9,7 +9,7 @@ public class AirlineLoginDAO extends AirlineDBConn{
 		List<AirlineLoginVO> lst = new ArrayList<AirlineLoginVO>();
 		try {
 			getConn();
-			sql = "select id, pwd from login";
+			sql = "select user_id, user_pwd from ac_user";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -32,7 +32,7 @@ public class AirlineLoginDAO extends AirlineDBConn{
 		int state = 0;
 		try {
 			getConn();
-			sql = "select id, pwd from login where id = ? and pwd = ?";
+			sql = "select user_id, user_pwd from ac_user where user_id = ? and user_pwd = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

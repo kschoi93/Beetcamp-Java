@@ -175,13 +175,24 @@ public class AirlineMain extends JFrame implements ActionListener{
 	public void getLoginData() {
 		String id = idField.getText();
 		String pwd = pwdField.getText();
-
+		String admin[] = {"dbsals","rlawldms","chlrudtlr","tlsgmldus"};
+		AirlineLoginDAO dao = new AirlineLoginDAO();
+		for(int i=0;i<admin.length;i++) {
+			if(id.equals(admin[i])) {
+				int loginCheck = dao.getLogin(id, pwd);
+				if(loginCheck == 0)JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
+				else if(loginCheck==1) {
+					dispose();
+//					Thread sta = new Thread(new EmpFrame);
+//					sta.start();
+				}
+			}
+		}
 		if(id.equals("")) {
 			JOptionPane.showMessageDialog(this, "아이디를 입력하셔야 합니다");
 		} else if(pwd.equals("")) {
 			JOptionPane.showMessageDialog(this, "비밀번호를 입력하셔야 합니다.");
 		} else {
-			AirlineLoginDAO dao = new AirlineLoginDAO();
 			int loginCheck = dao.getLogin(id, pwd);
 			if(loginCheck == 0) JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
 			else if(loginCheck ==1 ) {
