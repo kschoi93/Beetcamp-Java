@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CustomAirlinePlan extends JPanel{
+public class EmpAirlinePlan extends JPanel{
 	Font fnt = new Font("굴림체",Font.BOLD,24);
 		String columName[] = {"출발지","도착지","출발시간","도착시간","항공편","상태"};
 		Object str[][] = {
@@ -21,7 +21,7 @@ public class CustomAirlinePlan extends JPanel{
 	JScrollPane sp = new JScrollPane(tbl);
 		
 	JLabel dateLbl = new JLabel("___월___일 항공 일정");
-	public CustomAirlinePlan() {
+	public EmpAirlinePlan() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints g = new GridBagConstraints();
 		g.fill = GridBagConstraints.BOTH;

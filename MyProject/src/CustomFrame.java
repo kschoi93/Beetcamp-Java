@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,6 +19,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.LineBorder;
+
+import dbAll.CustomFrameDAO;
+import dbAll.CustomFrameVO;
 
 public class CustomFrame extends JFrame implements ActionListener, MouseListener ,Runnable{
 	// 상단 패널
@@ -29,19 +34,18 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		JLabel searchLbl = new JLabel("예 약 조 회");
 		JLabel mypageLbl = new JLabel("마 이 페 이 지");
 		JLabel logoutLbl = new JLabel("로 그 아 웃");
-		Component[] lbl = {hiLbl,resLbl,searchLbl,mypageLbl,logoutLbl};
 		//팝업메뉴
 		JPopupMenu myPop = new JPopupMenu();
+			JMenuItem my_page = new JMenuItem("마이페이지");
 			JMenuItem mileageItem = new JMenuItem("마일리지 사용내역");
 			JMenuItem memberInformationItem = new JMenuItem("회원정보 수정");
-			JMenuItem qnaItem = new JMenuItem("고객센터");
 	String title[] = {"_______님 어서오세요","예약하기","예약조회","마이페이지","로그아웃"};
 	
 	Font fnt = new Font("굴림체",Font.BOLD,14);
 	
 	//// 중앙 패널
 	static JPanel centerPane = new JPanel();
-		static CustomAirlinePlan plan = new CustomAirlinePlan(); //항공일정
+		static CustomPlan plan = new CustomPlan(); //항공일정
 		static CustomReservation reservation = new CustomReservation(); // 예약하기
 			static CustomReservation2 reservation2 = new CustomReservation2();
 			static CustomReservation3 reservation3 = new CustomReservation3();
@@ -99,6 +103,7 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 			hiLbl.setFont(fnt);
 			hiLbl.setHorizontalAlignment(JLabel.CENTER);
 			hiLbl.setForeground(new Color(0,128,255));
+			customNameChange(); // 이름 세팅하는 메소드
 		northCPane.add(resLbl);
 			resLbl.setOpaque(true);
 			resLbl.setFont(fnt);
@@ -122,15 +127,15 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 			logoutLbl.setFont(fnt);
 			logoutLbl.setBackground(Color.white);
 			logoutLbl.setHorizontalAlignment(JLabel.CENTER);
-			logoutLbl.setForeground(new Color(0,128,255));
+			logoutLbl.setForeground(new Color(0,0,0));
 		
 		northPane.add("South",northSPane);
 		northSPane.setBackground(Color.white);
 		
 		//마이페이지 팝어메뉴 추가
+		myPop.add(my_page);
 		myPop.add(mileageItem);
 		myPop.add(memberInformationItem);
-		myPop.add(qnaItem);
 
 		add("North",northPane);
 		
@@ -149,6 +154,7 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		
 		// 프레임 기본 설정
 		setTitle("CLOUD AIR");
+		setResizable(false);
 		setIconImage(AirlineMain.im);
 		setSize(1000,800);
 		setVisible(true);
@@ -156,15 +162,13 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// 이벤트 등록
-//		hiLbl.addActionListener(null);
 		resLbl.addMouseListener(this);
 		searchLbl.addMouseListener(this);
 		mypageLbl.addMouseListener(this);
 		logoutLbl.addMouseListener(this);
 		mileageItem.addActionListener(this);
 		memberInformationItem.addActionListener(this);
-		qnaItem.addActionListener(this);
-		
+		my_page.addActionListener(this);
 		
 	}
 	///////// 메소드 런
@@ -178,7 +182,9 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		Image korea2 = im.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
 		ImageIcon icon2 = new ImageIcon(korea2);
 		koreaLbl.setFont(fnt);
-		clock.add(new JLabel(icon2)); clock.add(koreaLbl); clock.add(koreaClock);
+		JLabel kImg = new JLabel(icon2);
+		kImg.setBorder(new LineBorder(Color.black,1));
+		clock.add(kImg); clock.add(koreaLbl); clock.add(koreaClock);
 		clock.setBackground(Color.white);
 		koreaLbl.setBackground(Color.white);
 		koreaClock.setBackground(Color.white);
@@ -191,8 +197,10 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 			Image c2 = c1.getImage();
 			Image c3 = c2.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
 			ImageIcon c4 = new ImageIcon(c3);
+			JLabel nImg = new JLabel(c4);
+			nImg.setBorder(new LineBorder(Color.black,1));
 			nationLbl.setText(countryName[i]);
-			reClock.add(new JLabel(c4));
+			reClock.add(nImg);
 			nationLbl.setFont(fnt);
 			reClock.add(nationLbl);
 			reClock.add(country[i]);
@@ -213,14 +221,27 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		/////////////// 시계 패널 끝..////////////
 
 	}
-
+	// _____님 어서오세요 라벨 변경
+	public void customNameChange() {
+		CustomFrameDAO dao = new CustomFrameDAO();
+		String id = AirlineMain.idField.getText();
+		List<CustomFrameVO> name = dao.getName(id);
+		for(int i=0; i<name.size(); i++) {
+			CustomFrameVO vo = name.get(i);
+			hiLbl.setText(vo.getUser_name()+"님 어서오세요");
+		}
+	}
 	
 	// 이벤트 ( 팝업메뉴아이템 )
 	public void actionPerformed(ActionEvent ae) {
 		Object obj = ae.getSource();
 		if(obj instanceof JMenuItem) {// JMenuItem 일 경우
 			String click = ae.getActionCommand();
-			if(click.equals("마일리지 사용내역")) {
+			if(click.equals("마이페이지")) {
+				visibleMethod();
+				mypage.setVisible(true);
+				centerPane.add(mypage);
+			}else if(click.equals("마일리지 사용내역")) {
 				visibleMethod();
 				mileage.setVisible(true);
 				centerPane.add(mileage);
@@ -228,13 +249,10 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 				visibleMethod();
 				revise.setVisible(true);
 				centerPane.add(revise);
-			} else if(click.equals("고객센터")) {
-				
-			}
+			} 
 		}
-		
 	}
-	
+	// panel(들)을 visible(false)
 	public static void visibleMethod() {
 		for(int i=0; i<visiblePane.length;i++) {
 			visiblePane[i].setVisible(false);
@@ -242,7 +260,6 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 		
 	}
 	// 마우스 이벤트 ( 라벨 )
-	@Override
 	public void mouseClicked(MouseEvent me) {
 		Object obj = me.getSource();
 		if((JLabel)obj instanceof JLabel) { // JLabel 일 경우
@@ -253,43 +270,36 @@ public class CustomFrame extends JFrame implements ActionListener, MouseListener
 					visibleMethod();
 					reservation.setVisible(true);
 					centerPane.add(reservation);
-					
 				} else if(menuStr.equals("예 약 조 회")) {
 					
 				} else if(menuStr.equals("마 이 페 이 지")) {
 					visibleMethod();
 					mypage.setVisible(true);
 					centerPane.add(mypage);
-					myPop.show(mypageLbl, me.getX(), me.getY());
 				} else if(menuStr.equals("로 그 아 웃")) {
 					dispose();
-					new AirlineMain();
+					new AirlineMain(); 
 				}
 			} 
 		}
-		
 	}
 	
-
-	public void mouseReleased(MouseEvent me) {
-
+	public void mouseReleased(MouseEvent me) {}
+	public void mousePressed(MouseEvent e) {}
+	public void mouseEntered(MouseEvent me) {
+		Object obj = me.getSource();
+		if((JLabel)obj instanceof JLabel){
+			JLabel myLbl = (JLabel)me.getSource();
+			String mymenu= myLbl.getText();
+			if(mymenu.equals("마 이 페 이 지")) {
+				myPop.setVisible(true);
+				myPop.show(mypageLbl, me.getX(), me.getY());
+			} else {
+				myPop.setVisible(false);
+			}
+		}
 	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent me) {}
 	
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new CustomFrame());

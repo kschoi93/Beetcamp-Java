@@ -1,8 +1,9 @@
+package dbAll;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AirlineLoginDAO extends AirlineDBConn{
+public class AirlineLoginDAO extends DBConn{
 
 	public AirlineLoginDAO() {}
 	public List<AirlineLoginVO> LoginAllSelect(){
@@ -26,7 +27,7 @@ public class AirlineLoginDAO extends AirlineDBConn{
 		return lst;
 	}
 	
-	public int getLogin(String id,String pwd){
+	public int getLogin(String user_id,String user_pwd){
 		List<AirlineLoginVO> lst = new ArrayList<AirlineLoginVO>();
 		
 		int state = 0;
@@ -35,8 +36,8 @@ public class AirlineLoginDAO extends AirlineDBConn{
 			sql = "select user_id, user_pwd from ac_user where user_id = ? and user_pwd = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, user_pwd);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) state = 1;

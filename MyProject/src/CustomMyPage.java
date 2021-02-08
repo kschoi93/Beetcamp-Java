@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -24,7 +25,7 @@ public class CustomMyPage extends JPanel implements ActionListener{
 	JLabel boardingNumLbl = new JLabel("15회");
 	JButton btn = new JButton("돌아가기");
 	
-	CustomAirlinePlan cp = new CustomAirlinePlan();
+	CustomPlan cp = new CustomPlan();
 	public CustomMyPage() {
 		setLayout(new BorderLayout());
 		main.setLayout(new GridBagLayout());
@@ -118,6 +119,11 @@ public class CustomMyPage extends JPanel implements ActionListener{
 				CustomFrame.plan.setVisible(true);
 			}
 		}
+	}
+	
+	public void getPrintInformation() {
+		
+		memberLbl.setText("님");
 	}
 
 }

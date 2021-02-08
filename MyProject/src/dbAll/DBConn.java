@@ -1,9 +1,10 @@
+package dbAll;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class AirlineDBConn {
+public class DBConn {
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -19,7 +20,7 @@ public class AirlineDBConn {
 	String username = "c##scott";
 	String userpwd = "tiger";
 	
-	public AirlineDBConn() {}
+	public DBConn() {}
 	public void getConn() {
 		try {
 			conn = DriverManager.getConnection(url,username,userpwd);

@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -16,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CustomReservation2 extends JPanel implements ActionListener{
+public class EmpAirlineReservation1 extends JPanel implements ActionListener{
 	Font fnt = new Font("굴림체",Font.BOLD,14);
 	JPanel changePane = new JPanel();
 		JPanel centerPane = new JPanel();
@@ -46,8 +45,8 @@ public class CustomReservation2 extends JPanel implements ActionListener{
 			JButton nextBtn = new JButton("다음단계");
 		JPanel test = new JPanel();
 	
-		CustomReservation3 reservation3 = new CustomReservation3();
-	public CustomReservation2() {
+		EmpAirlineReservation2 reservation2 = new EmpAirlineReservation2();
+	public EmpAirlineReservation1() {
 		setLayout(new BorderLayout());
 		
 		// 전환되는 패널
@@ -107,17 +106,18 @@ public class CustomReservation2 extends JPanel implements ActionListener{
 				btnPane.setBackground(Color.white);
 				btnPane.add(cancelBtn);
 					cancelBtn.setFont(fnt);
-					cancelBtn.setBackground(new Color(0,130,255));
+					cancelBtn.setBackground(new Color(255,128,128));
 					cancelBtn.setForeground(Color.white);
 					
 				btnPane.add(nextBtn);
 					nextBtn.setFont(fnt);
-					nextBtn.setBackground(new Color(0,130,255));
+					nextBtn.setBackground(new Color(255,128,128));
 					nextBtn.setForeground(Color.white);
 					
 		setBackground(Color.white);
 		setSize(1000,800);
 		setVisible(true);
+		
 		cancelBtn.addActionListener(this);
 		nextBtn.addActionListener(this);
 	}
@@ -128,11 +128,11 @@ public class CustomReservation2 extends JPanel implements ActionListener{
 			String str = ae.getActionCommand();
 			if(str.equals("예약취소")) {
 				this.setVisible(false);
-				CustomFrame.plan.setVisible(true);
+				EmpFrame.plan.setVisible(true);
 			} else if(str.equals("다음단계")) {
 				this.setVisible(false);
-				CustomFrame.reservation3.setVisible(true);
-				CustomFrame.centerPane.add(CustomFrame.reservation3);
+				EmpFrame.reservation2.setVisible(true);
+				EmpFrame.centerPane.add(EmpFrame.reservation2);
 			}
 		}
 	}

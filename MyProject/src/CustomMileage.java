@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -32,53 +33,55 @@ public class CustomMileage extends JPanel implements ActionListener{
 			JPanel btnPane	= new JPanel();
 				JButton returnBtn = new JButton("돌아가기");
 		
-		CustomAirlinePlan plan = new CustomAirlinePlan();
+		CustomPlan plan = new CustomPlan();
 	public CustomMileage() {
 		setLayout(new BorderLayout());
 		add("Center",main);
 		main.add(centerMain);
 		main.setBackground(Color.white);
-		centerMain.setLayout(new BorderLayout(150,50));
-		centerMain.setBackground(Color.white);
-		centerMain.add("North",new JLabel());
-		centerMain.add("East",new JLabel());
-		centerMain.add("West",new JLabel());
-		centerMain.add("South",new JLabel());
-		centerMain.add("Center",wrapPane);
-		wrapPane.setLayout(new BorderLayout(0,10));
-		wrapPane.setBackground(Color.white);
-		wrapPane.setBackground(Color.white);
-		wrapPane.add("North",northPane);
-			northPane.setBackground(Color.white);
-			northPane.setLayout(new BorderLayout(0,10));
-			northPane.add("North",northN);
-				northN.setLayout(new BorderLayout());
-				northN.add("Center",memberName);
-				memberName.setHorizontalAlignment(JLabel.CENTER);
-				memberName.setFont(fnt);
-				memberName.setOpaque(true);
-				memberName.setBackground(Color.white);
-				northN.add("South",memberNum);
-				memberNum.setHorizontalAlignment(JLabel.CENTER);
-				memberNum.setFont(fnt);
-				memberNum.setOpaque(true);
-				memberNum.setBackground(Color.white);
-			northPane.add("South",southLbl);
-				southLbl.setHorizontalAlignment(JLabel.CENTER);
-				southLbl.setFont(fnt);
-				southLbl.setOpaque(true);
-				southLbl.setBackground(Color.white);
-		
-		wrapPane.add("Center",centerPane);
-		wrapPane.setBackground(Color.white);
-			centerPane.setLayout(new BorderLayout(0,30));
-			centerPane.add("Center",sp);
-			centerPane.add("South",btnPane);
-				btnPane.setBackground(Color.white);
-				btnPane.add(returnBtn);
-				returnBtn.setFont(fnt);
-				returnBtn.setBackground(new Color(0,128,255));
-				returnBtn.setForeground(Color.white);
+			centerMain.setLayout(new BorderLayout(150,50));
+			centerMain.setBackground(Color.white);
+			centerMain.add("North",new JLabel());
+			centerMain.add("East",new JLabel());
+			centerMain.add("West",new JLabel());
+			centerMain.add("South",new JLabel());
+			centerMain.add("Center",wrapPane);
+				wrapPane.setLayout(new BorderLayout(0,10));
+				wrapPane.setBackground(Color.white);
+				wrapPane.setBackground(Color.white);
+				wrapPane.add("North",northPane);
+					northPane.setBackground(Color.white);
+					northPane.setLayout(new BorderLayout(0,10));
+					northPane.add("North",northN);
+						northN.setLayout(new BorderLayout());
+						northN.add("Center",memberName);
+						memberName.setHorizontalAlignment(JLabel.CENTER);
+						memberName.setFont(fnt);
+						memberName.setOpaque(true);
+						memberName.setBackground(Color.white);
+						northN.add("South",memberNum);
+						memberNum.setHorizontalAlignment(JLabel.CENTER);
+						memberNum.setFont(fnt);
+						memberNum.setOpaque(true);
+						memberNum.setBackground(Color.white);
+					northPane.add("South",southLbl);
+						southLbl.setHorizontalAlignment(JLabel.CENTER);
+						southLbl.setFont(fnt);
+						southLbl.setOpaque(true);
+						southLbl.setBackground(Color.white);
+				
+				wrapPane.add("Center",centerPane);
+				wrapPane.setBackground(Color.white);
+					centerPane.setLayout(new BorderLayout(0,30));
+					centerPane.setBackground(Color.white);
+					centerPane.add("Center",sp);
+						tbl.getParent().setBackground(Color.white);
+					centerPane.add("South",btnPane);
+						btnPane.setBackground(Color.white);
+						btnPane.add(returnBtn);
+						returnBtn.setFont(fnt);
+						returnBtn.setBackground(new Color(0,128,255));
+						returnBtn.setForeground(Color.white);
 		
 		setBackground(Color.white);	
 		setVisible(true);
@@ -94,7 +97,7 @@ public class CustomMileage extends JPanel implements ActionListener{
 				this.setVisible(false);
 				CustomFrame.plan.setVisible(true);
 			}
-		}
+		} 
 	}
 
 }

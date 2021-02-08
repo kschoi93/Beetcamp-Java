@@ -22,6 +22,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import dbAll.AirlineLoginDAO;
+
 public class AirlineMain extends JFrame implements ActionListener{
 	Font titleFnt = new Font("휴먼둥근헤드라인",Font.BOLD,32);
 	Font fnt = new Font("굴림체",Font.BOLD,14);
@@ -40,7 +42,7 @@ public class AirlineMain extends JFrame implements ActionListener{
 			JPanel southCenterPane = new JPanel();
 			JPanel idPane = new JPanel();
 				JLabel idLbl = new JLabel("USERNAME");
-				JTextField idField = new JTextField(20);
+				static JTextField idField = new JTextField(20);
 			JPanel pwdPane = new JPanel();
 				JLabel pwdLbl = new JLabel("PASSWORD");
 				JPasswordField pwdField = new JPasswordField(20);
@@ -173,32 +175,37 @@ public class AirlineMain extends JFrame implements ActionListener{
 	}
 	////////////////////////// 로그인 db //////////////////////
 	public void getLoginData() {
-		String id = idField.getText();
-		String pwd = pwdField.getText();
+		String user_id = idField.getText();
+		String user_pwd = pwdField.getText();
 		String admin[] = {"dbsals","rlawldms","chlrudtlr","tlsgmldus"};
 		AirlineLoginDAO dao = new AirlineLoginDAO();
+		int customLogin = 0;
 		for(int i=0;i<admin.length;i++) {
-			if(id.equals(admin[i])) {
-				int loginCheck = dao.getLogin(id, pwd);
+			if(user_id.equals(admin[i])) {
+				int loginCheck = dao.getLogin(user_id, user_pwd);
 				if(loginCheck == 0)JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
 				else if(loginCheck==1) {
+					customLogin = 1;
 					dispose();
-//					Thread sta = new Thread(new EmpFrame);
-//					sta.start();
+					Thread sta = new Thread(new EmpFrame());
+					sta.start();
+					break;
 				}
 			}
 		}
-		if(id.equals("")) {
-			JOptionPane.showMessageDialog(this, "아이디를 입력하셔야 합니다");
-		} else if(pwd.equals("")) {
-			JOptionPane.showMessageDialog(this, "비밀번호를 입력하셔야 합니다.");
-		} else {
-			int loginCheck = dao.getLogin(id, pwd);
-			if(loginCheck == 0) JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
-			else if(loginCheck ==1 ) {
-				dispose(); // main 종료
-				Thread sta = new Thread(new CustomFrame());
-				sta.start();// customframe 시작
+		if(customLogin==0) {
+			if(user_id.equals("")) {
+				JOptionPane.showMessageDialog(this, "아이디를 입력하셔야 합니다");
+			} else if(user_pwd.equals("")) {
+				JOptionPane.showMessageDialog(this, "비밀번호를 입력하셔야 합니다.");
+			} else {
+				int loginCheck = dao.getLogin(user_id, user_pwd);
+				if(loginCheck == 0) JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
+				else if(loginCheck ==1 ) {
+					dispose(); // main 종료
+					Thread sta = new Thread(new CustomFrame());
+					sta.start();// customframe 시작
+				}
 			}
 		}
 	}
