@@ -1,5 +1,5 @@
-// update : ¼öÁ¤ÇÏ´Â°Í
-// dbconn °ú ¿¬°áµÇ¾î ÀÖ¾î ÄÚµåÀÇ °£¼ÒÈ­°¡ µÇ¾îÀÖ´Ù
+// update : ìˆ˜ì •í•˜ëŠ”ê²ƒ
+// dbconn ê³¼ ì—°ê²°ë˜ì–´ ìˆì–´ ì½”ë“œì˜ ê°„ì†Œí™”ê°€ ë˜ì–´ìˆë‹¤
 public class UpdateTest extends DBConn{
 
 	public UpdateTest() {
@@ -12,12 +12,12 @@ public class UpdateTest extends DBConn{
 			
 			pstmt =  conn.prepareStatement(sql);
 			pstmt.setString(1, "010-5555-5555");
-			pstmt.setString(2, "Àå¿µ½Ç");
+			pstmt.setString(2, "ì¥ì˜ì‹¤");
 			
 			int result = pstmt.executeUpdate();
 			
 			if(result>0) {
-				System.out.println(result+"°³ÀÇ ·¹ÄÚµå°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù");
+				System.out.println(result+"ê°œì˜ ë ˆì½”ë“œê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤");
 			}
 			
 		} catch(Exception e) {

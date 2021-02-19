@@ -15,7 +15,7 @@ public class DeleteTest extends DBConn {
 			
 			int result = pstmt.executeUpdate();
 			if(result > 0) {
-				System.out.println(result+"°³ÀÇ ·¹ÄÚµå°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+				System.out.println(result+"ê°œì˜ ë ˆì½”ë“œê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

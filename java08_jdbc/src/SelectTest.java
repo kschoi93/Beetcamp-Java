@@ -10,10 +10,10 @@ public class SelectTest {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		}catch(Exception e) {
-			System.out.println("µå¶óÀÌºê ·Îµù ¿¡·¯¹ß»ı");
+			System.out.println("ë“œë¼ì´ë¸Œ ë¡œë”© ì—ëŸ¬ë°œìƒ");
 		}
 	}
-	Connection conn = null; // ¿¬°á
+	Connection conn = null; // ì—°ê²°
 	PreparedStatement pstmt = null;
 	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -27,14 +27,14 @@ public class SelectTest {
 	public void recordSelect() {
 		try {
 			conn = DriverManager.getConnection(url,username,userpwd);
-			//Äõ¸®¹®À» ¸¸µé¾î¶ó
+			//ì¿¼ë¦¬ë¬¸ì„ ë§Œë“¤ì–´ë¼
 			String sql = "select num,username, tel, email, writedate,addr from member "
 					+ " order by num asc";
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			//rs°´Ã¼¿¡¼­ point ÀÌµ¿ÇÏ¿© ·¹ÄÚµåÀÇ Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
+			//rsê°ì²´ì—ì„œ point ì´ë™í•˜ì—¬ ë ˆì½”ë“œì˜ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 			while(rs.next()) {
-				int num = rs.getInt(1); // rs.getInt("field¸í");
+				int num = rs.getInt(1); // rs.getInt("fieldëª…");
 				String username = rs.getString(2); // rs.getString("username");
 				String tel = rs.getString(3);
 				String email = rs.getString(4);

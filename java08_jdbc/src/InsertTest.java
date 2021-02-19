@@ -1,4 +1,4 @@
-// Æ®·£Àè¼Ç, ¿©·¯°¡ÁöÀÇ ÀÛ¾÷À» ¸ğµÎ ¿Ï·áÇÏ´Â°Í
+// íŠ¸ëœì­ì…˜, ì—¬ëŸ¬ê°€ì§€ì˜ ì‘ì—…ì„ ëª¨ë‘ ì™„ë£Œí•˜ëŠ”ê²ƒ
 
 
 import java.io.BufferedReader;
@@ -9,52 +9,52 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class InsertTest {
-	//2. db¿¬°á
-	//±âº»ÀÛ¼º			ipÁÖ¼Ò or localhost    port¹øÈ£   Àü¿ªµ¥ÀÌÅÍº£ÀÌ½ºº¯¼ö
-	String url = "jdbc:oracle:thin:@180.233.244.51:1521:xe";
+	//2. dbì—°ê²°
+	//ê¸°ë³¸ì‘ì„±			ipì£¼ì†Œ or localhost    portë²ˆí˜¸   ì „ì—­ë°ì´í„°ë² ì´ìŠ¤ë³€ìˆ˜
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String userid = "c##scott";
 	String userpwd = "tiger";
 	Connection conn = null;
-	//1. jdbc µå¶óÀÌºê ·Îµù
-	// ¸â¹ö ¿µ¿ª¿¡¼­ ½ÇÇà¹® »ç¿ë¹ı
+	//1. jdbc ë“œë¼ì´ë¸Œ ë¡œë”©
+	// ë©¤ë²„ ì˜ì—­ì—ì„œ ì‹¤í–‰ë¬¸ ì‚¬ìš©ë²•
 	static {
 		try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		System.out.println("JDBCµå¶óÀÌºê ·Îµù µÇ¾ú½À´Ï´Ù.");
+		System.out.println("JDBCë“œë¼ì´ë¸Œ ë¡œë”© ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch(ClassNotFoundException cnfe) {
-			System.out.println("JDBCµå¶óÀÌºê ·Îµù ½ÇÆĞÇÏ¿´½À´Ï´Ù."+cnfe.getMessage());
+			System.out.println("JDBCë“œë¼ì´ë¸Œ ë¡œë”© ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤."+cnfe.getMessage());
 		}
 	}
 	public InsertTest() {
 		try {
 			
 			conn = DriverManager.getConnection(url, userid, userpwd);
-			conn.setAutoCommit(false);// ÀÚµ¿ Ä¿¹ÔÀ» ¸·¾ÆÁØ´Ù
+			conn.setAutoCommit(false);// ìë™ ì»¤ë°‹ì„ ë§‰ì•„ì¤€ë‹¤
 			
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
 			
 			do {
-				System.out.print("ÀÌ¸§=");
+				System.out.print("ì´ë¦„=");
 				String username = br.readLine();
-				System.out.print("¿¬¶ôÃ³=");
+				System.out.print("ì—°ë½ì²˜=");
 				String tel = br.readLine();
-				System.out.print("ÀÌ¸ŞÀÏ=");
+				System.out.print("ì´ë©”ì¼=");
 				String email = br.readLine();
-				System.out.print("ÁÖ¼Ò=");
+				System.out.print("ì£¼ì†Œ=");
 				String addr = br.readLine();
 				
-				//3. preparedStatement¸¦ »ı¼º  ( Äõ¸®¹® »ı¼º )
+				//3. preparedStatementë¥¼ ìƒì„±  ( ì¿¼ë¦¬ë¬¸ ìƒì„± )
 				String sql = "insert into member(num, username, tel, email, addr, writedate) "
 						+ " values(memsq.nextval,?,?,?,?,sysdate)";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				// ?¿¡ °ªÀ» ¼ÂÆÃ
+				// ?ì— ê°’ì„ ì…‹íŒ…
 				pstmt.setString(1, username);
 				pstmt.setString(2, tel);
 				pstmt.setString(3, email);
 				pstmt.setString(4, addr);
 				
-				//4. ½ÇÇà
+				//4. ì‹¤í–‰
 				int result = pstmt.executeUpdate();
 				
 //				sql = "insert into member(num,username,tel,email,addr,writedate) "
@@ -63,20 +63,20 @@ public class InsertTest {
 //				pstmt.setString(1, "aaaaaaaa");
 //				pstmt.setString(2, "010-8989-2342");
 //				pstmt.setString(3, "ababa@naver.com");
-//				pstmt.setString(4, "¼­¿ï½Ã °­¼­±¸");
+//				pstmt.setString(4, "ì„œìš¸ì‹œ ê°•ì„œêµ¬");
 				
 				int result2 = pstmt.executeUpdate();
 				
 				
 				if(result > 0 /*&& result2>0*/) {
-					System.out.println("È¸¿øµî·Ï µÇ¾ú½À´Ï´Ù.");
+					System.out.println("íšŒì›ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					conn.commit();
 				} 
 			}while(true);
 			
 			
 		}catch(Exception e) {
-			//¿¹¿Ü¹ß»ıÇÏ¸é ¸ÕÀú Á¤»ó½ÇÇàµÈ Äõ¸® ½ÇÇà¹® Ãë¼Ò
+			//ì˜ˆì™¸ë°œìƒí•˜ë©´ ë¨¼ì € ì •ìƒì‹¤í–‰ëœ ì¿¼ë¦¬ ì‹¤í–‰ë¬¸ ì·¨ì†Œ
 			try {
 				conn.rollback();
 			}catch(SQLException se) {

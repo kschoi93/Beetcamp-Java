@@ -23,9 +23,9 @@ import javax.swing.plaf.basic.BasicSplitPaneUI.BasicVerticalLayoutManager;
 import javax.swing.table.DefaultTableModel;
 
 public class MemberLayout extends JFrame{
-	Font fnt = new Font("±¼¸²Ã¼",Font.BOLD,12);
+	Font fnt = new Font("êµ´ë¦¼ì²´",Font.BOLD,12);
 	
-	// »ó´ÜÆĞ³Î
+	// ìƒë‹¨íŒ¨ë„
 	JPanel northPane = new JPanel();
 		JPanel boxPane = new JPanel();
 			JPanel numPane = new JPanel(); JTextField numField = new JTextField(5);
@@ -34,42 +34,42 @@ public class MemberLayout extends JFrame{
 			JPanel emailPane = new JPanel(); JTextField emailField = new JTextField(30);
 			JPanel addrPane = new JPanel(); JTextField addrField = new JTextField(50);
 			JPanel datePane = new JPanel(); JTextField dateField = new JTextField(50);
-		String[] northStr = {"¹øÈ£","ÀÌ¸§","ÀüÈ­¹øÈ£","ÀÌ¸ŞÀÏ","ÁÖ¼Ò","µî·ÏÀÏ"};
+		String[] northStr = {"ë²ˆí˜¸","ì´ë¦„","ì „í™”ë²ˆí˜¸","ì´ë©”ì¼","ì£¼ì†Œ","ë“±ë¡ì¼"};
 		int[] northY = {5,35,70,105,140,175};
 		
 		
-	// Áß¾ÓÆĞ³Î	
+	// ì¤‘ì•™íŒ¨ë„	
 	JPanel centerPanel= new JPanel();
-		//¹öÆ°
+		//ë²„íŠ¼
 		JPanel grid = new JPanel(new GridLayout(1,7));
-		String[] gridButtonStr = {"Ãß°¡","¼öÁ¤","»èÁ¦","Áö¿ì±â","Á¾·á","¿¢¼¿·ÎÀúÀå","¿¢¼¿ºÒ·¯¿À±â"};
+		String[] gridButtonStr = {"ì¶”ê°€","ìˆ˜ì •","ì‚­ì œ","ì§€ìš°ê¸°","ì¢…ë£Œ","ì—‘ì…€ë¡œì €ì¥","ì—‘ì…€ë¶ˆëŸ¬ì˜¤ê¸°"};
 	
-		// Å×ÀÌºí
-		String header[] = {"¹øÈ£","ÀÌ¸§","ÀüÈ­¹øÈ£","ÀÌ¸ŞÀÏ","ÁÖ¼Ò","µî·ÏÀÏ"};
+		// í…Œì´ë¸”
+		String header[] = {"ë²ˆí˜¸","ì´ë¦„","ì „í™”ë²ˆí˜¸","ì´ë©”ì¼","ì£¼ì†Œ","ë“±ë¡ì¼"};
 		String contents[][]={
 				{"","","","","",""}
 		};
 
 	
-	// ÇÏ´ÜÆĞ³Î
+	// í•˜ë‹¨íŒ¨ë„
 	JPanel searchPanel=new JPanel();
 		JPanel searchPane = new JPanel(new FlowLayout());
 			JTextField searchTextField = new JTextField(20);
 			JButton searchBtn = new JButton("Serach");
 	public MemberLayout() {
 
-		// »ó´Ü ÆĞ³Î
+		// ìƒë‹¨ íŒ¨ë„
 		add(northPane);
 		northPane.setLayout(null);
 		northPane.setBounds(0,0,800,200);
 		
-			// ¶óº§ ¼³Á¤
+			// ë¼ë²¨ ì„¤ì •
 			for(int i =0; i<northStr.length;i++) {
 				JLabel str = new JLabel(northStr[i]);
 				northPane.add(str).setBounds(5, northY[i], 70, 25);
 				str.setFont(fnt);
 			}	
-			// ÅØ½ºÆ® ÇÊµå ¼³Á¤
+			// í…ìŠ¤íŠ¸ í•„ë“œ ì„¤ì •
 			northPane.add(numField); numField.setBounds(70, 5, 30, 25);
 			northPane.add(nameField); nameField.setBounds(70, 35, 100, 25);
 			northPane.add(telField); telField.setBounds(70, 70, 200, 25);
@@ -77,12 +77,12 @@ public class MemberLayout extends JFrame{
 			northPane.add(addrField); addrField.setBounds(70, 140, 400, 25);
 			northPane.add(dateField); dateField.setBounds(70, 175, 400, 25);
 			
-		// Áß¾ÓÆĞ³Î
+		// ì¤‘ì•™íŒ¨ë„
 		add(centerPanel);
 			centerPanel.setLayout(null);
 			centerPanel.setBounds(0,205,800,210);
 			
-			// ¹öÆ°ÆĞ³Î
+			// ë²„íŠ¼íŒ¨ë„
 			centerPanel.add(grid);
 			grid.setBounds(0,0,800,30);
 			for(int i=0;i<gridButtonStr.length;i++) {
@@ -105,7 +105,7 @@ public class MemberLayout extends JFrame{
 				
 			
 		
-		setTitle("È¸¿ø°ü¸®");
+		setTitle("íšŒì›ê´€ë¦¬");
 		setSize(800,500);
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

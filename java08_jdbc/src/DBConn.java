@@ -4,13 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DBConn {
-	//1. µå¶óÀÌºê ·Îµù
+	//1. ë“œë¼ì´ë¸Œ ë¡œë”©
 	
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch(Exception e) {
-			System.out.println("µå¶óÀÌºê ·Îµù ¿¡·¯¹ß»ı-->"+e.getMessage());
+			System.out.println("ë“œë¼ì´ë¸Œ ë¡œë”© ì—ëŸ¬ë°œìƒ-->"+e.getMessage());
 		}
 	}
 	Connection conn=null;
@@ -23,23 +23,23 @@ public class DBConn {
 	
 	public DBConn() {
 	}
-	//DB¿¬°á
+	//DBì—°ê²°
 	public void getConn() {
 		try {
 			conn = DriverManager.getConnection(url,username,userpwd);
 		}catch(Exception e) {
-			System.out.println("DB¿¬°á ¿¡·¯¹ß»ı-->"+e.getMessage());
+			System.out.println("DBì—°ê²° ì—ëŸ¬ë°œìƒ-->"+e.getMessage());
 		}
 	}
-	//DBÁ¢¼Ó Á¾·á
-	// DB¸¦ ´Ù¸¥»ç¶÷ÀÌ »ç¿ëÇÏ·Á¸é Á¾·á¸¦ ÇØÁà¾ß ÇÑ´Ù
+	//DBì ‘ì† ì¢…ë£Œ
+	// DBë¥¼ ë‹¤ë¥¸ì‚¬ëŒì´ ì‚¬ìš©í•˜ë ¤ë©´ ì¢…ë£Œë¥¼ í•´ì¤˜ì•¼ í•œë‹¤
 	public void dbClose() {
 		try {
 			if(rs!=null) rs.close();
 			if(pstmt!=null) pstmt.close();
 			if(conn!=null)conn.close();
 		}catch(Exception e) {
-			System.out.println("DBÁ¾·á ¿¡·¯¹ß»ı-->"+e.getMessage());
+			System.out.println("DBì¢…ë£Œ ì—ëŸ¬ë°œìƒ-->"+e.getMessage());
 		}
 	}
 }
