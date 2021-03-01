@@ -27,16 +27,16 @@ public class ExceptionTestMethod {
 		try {
 			ExceptionTestMethod et = new ExceptionTestMethod();
 		} catch(ArithmeticException ae){
-			System.out.println("0À¸·Î ³ª´­ ¼ö ¾ø½À´Ï´Ù-->" +  ae.getMessage());
+			System.out.println("0ìœ¼ë¡œ ë‚˜ëˆŒ ìˆ˜ ì—†ìŠµë‹ˆë‹¤-->" +  ae.getMessage());
 		} catch(NumberFormatException e) {
-			System.out.println("¼ıÀÚ¸¦ Á¦¿ÜÇÑ ¹®ÀÚ°¡ ÀÔ·ÂµÉ ¼ö ¾ø½À´Ï´Ù.--->"+ e.getMessage());
+			System.out.println("ìˆ«ìë¥¼ ì œì™¸í•œ ë¬¸ìê°€ ì…ë ¥ë  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.--->"+ e.getMessage());
 		} catch(Exception e) {
-			System.out.println("ÀÎµ¦½º ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¿´½À´Ï´Ù.--->"+ e.getMessage());
+			System.out.println("ì¸ë±ìŠ¤ ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.--->"+ e.getMessage());
 			e.printStackTrace();
 		} finally{
-			System.out.println("ÀÌ°Å½¼ ¹«Á¶°Ç ½ÇÇàµÇ´Â°Ü");
+			System.out.println("ì´ê±°ìŠ¨ ë¬´ì¡°ê±´ ì‹¤í–‰ë˜ëŠ”ê²¨");
 		}
-		System.out.println("ÇÁ·Î±×·¥ Á¾·á......");
+		System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£Œ......");
 	}
 
 }

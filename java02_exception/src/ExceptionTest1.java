@@ -4,22 +4,22 @@ import java.util.Scanner;
 public class ExceptionTest1 {
 	public ExceptionTest1() {
 		try {
-			// ¿¹¿ÜÃ³¸®ÇÏ±â
-			// ¿¹¿Ü¹ß»ı °¡´ÉÇÑ ÄÚµå¿Í ¿¹¿Ü ¹ß»ı °¡´É¼ºÀÌ ¾ø´Â ÄÚµåµµ ¸í½Ã°¡ °¡´ÉÇÏ´Ù
+			// ì˜ˆì™¸ì²˜ë¦¬í•˜ê¸°
+			// ì˜ˆì™¸ë°œìƒ ê°€ëŠ¥í•œ ì½”ë“œì™€ ì˜ˆì™¸ ë°œìƒ ê°€ëŠ¥ì„±ì´ ì—†ëŠ” ì½”ë“œë„ ëª…ì‹œê°€ ê°€ëŠ¥í•˜ë‹¤
 			Scanner scan = new Scanner(System.in);
-			System.out.println("Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä...");
+			System.out.println("ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”...");
 			int n = scan.nextInt();
 			
 			System.out.println("n-->"+n);
 		} catch(InputMismatchException ime) {
-			//try¿µ¿ªÀÇ ÄÚµå°¡ ¿¹¿Ü°¡ ¹ß»ıÇÏ¸é ½ÇÇàµÉ ¿µ¿ª
+			//tryì˜ì—­ì˜ ì½”ë“œê°€ ì˜ˆì™¸ê°€ ë°œìƒí•˜ë©´ ì‹¤í–‰ë  ì˜ì—­
 //			ime.printStackTrace();
 			
 //			System.out.println(ime.getMessage());
 //			
-			System.out.println("¼ıÀÚ¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù..");
+			System.out.println("ìˆ«ìë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤..");
 		}
-		System.out.println("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+		System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	}
 	
 	public static void main(String[] args) {

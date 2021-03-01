@@ -12,10 +12,10 @@ public class ExceptionEx {
 			Scanner scan = new Scanner(System.in);
 			do {
 				try {
-						System.out.print("Ã¹¹øÂ° ¼ö->");
-						// ÄÜ¼ÖÀÇ ¹®ÀÚ¿­ ÀÔ·Â¹Ş´Â´Ù.
+						System.out.print("ì²«ë²ˆì§¸ ìˆ˜->");
+						// ì½˜ì†”ì˜ ë¬¸ìì—´ ì…ë ¥ë°›ëŠ”ë‹¤.
 						int num1 = Integer.parseInt(scan.nextLine());
-						System.out.print("µÎ¹øÂ° ¼ö->");
+						System.out.print("ë‘ë²ˆì§¸ ìˆ˜->");
 						int num2 = scan.nextInt();
 						
 						int result = num1 * num2;
@@ -23,18 +23,18 @@ public class ExceptionEx {
 						System.out.println(num1+"*"+num2+"="+result);
 						System.out.printf("%d/%d=%d\n",num1,num2,result2);
 						
-						String names[] = {"¼¼Á¾´ë¿Õ","ÀÌ¼ø½Å"};
+						String names[] = {"ì„¸ì¢…ëŒ€ì™•","ì´ìˆœì‹ "};
 						for(int i=0; i<=names.length; i++) {
 							System.out.println("names["+i+"]="+names[i]);
 						}
 					}catch(NumberFormatException nfe) {
-						System.out.println(" ¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä....");
+						System.out.println(" ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”....");
 //					} catch(InputMismatchException ime) {
-//						System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä");
+//						System.out.println("ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”");
 					} catch(ArithmeticException ae) {
-						System.out.println("µÎ¹øÂ° °ªÀº 0¿ÜÀÇ °ªÀ» ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.");
+						System.out.println("ë‘ë²ˆì§¸ ê°’ì€ 0ì™¸ì˜ ê°’ì„ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤.");
 					} catch(ArrayIndexOutOfBoundsException ai) {
-						System.out.println("º£¿­ÀÇ index¸¦ Àß¸ø»ç¿ëÇÏ¿´½À´Ï´Ù..."+ai.getMessage());
+						System.out.println("ë² ì—´ì˜ indexë¥¼ ì˜ëª»ì‚¬ìš©í•˜ì˜€ìŠµë‹ˆë‹¤..."+ai.getMessage());
 					}
 			}while(true);	
 		}

@@ -7,15 +7,15 @@ public class ExceptionTest2 {
 	
 	void start(){
 		try {
-			//½ÇÇàºÎ
+			//ì‹¤í–‰ë¶€
 			int data[] = {10,8,95,32,65};
 			System.out.println(data[data.length]);
 		}catch(ArrayIndexOutOfBoundsException ae) {
-			System.out.println("¹è¿­ÀÇ ÀÎµ¦½º¸¦ Àß¸ø »ç¿ëÇÏ¿´½À´Ï´Ù...>>>"+ae.getMessage());
+			System.out.println("ë°°ì—´ì˜ ì¸ë±ìŠ¤ë¥¼ ì˜ëª» ì‚¬ìš©í•˜ì˜€ìŠµë‹ˆë‹¤...>>>"+ae.getMessage());
 
 			
 		}finally {
-			System.out.println("finally : ¹«Á¶°Ç ÇÑ¹øÀº ½ÇÇàµÊ.....");
+			System.out.println("finally : ë¬´ì¡°ê±´ í•œë²ˆì€ ì‹¤í–‰ë¨.....");
 		}
 	}
 	

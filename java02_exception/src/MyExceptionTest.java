@@ -5,14 +5,14 @@ public class MyExceptionTest extends Exception {
 	
 	public MyExceptionTest(){
 		try {
-			System.out.print("1~10±îÁöÀÇ Á¤¼ö ÀÔ·Â=");
+			System.out.print("1~10ê¹Œì§€ì˜ ì •ìˆ˜ ì…ë ¥=");
 			int data = scan.nextInt();
 			if(data <1 || data>10) {
-				// throw : °­Á¦ ¿¹¿Ü¹ß»ı
+				// throw : ê°•ì œ ì˜ˆì™¸ë°œìƒ
 				throw new MyException();
-//				throw new MyException("1¿¡¼­ 10±îÁö Á¤¼ö¸¸ °¡´É");
+//				throw new MyException("1ì—ì„œ 10ê¹Œì§€ ì •ìˆ˜ë§Œ ê°€ëŠ¥");
 			} else {
-				// Á¤»óÃ³¸®
+				// ì •ìƒì²˜ë¦¬
 				sum(data);
 			}
 		} catch(MyException e) {

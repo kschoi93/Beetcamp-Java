@@ -15,28 +15,28 @@ public class SocketTest {
 		InetAddress ia = InetAddress.getByName("180.233.244.51");
 		int port = 12000;
 		
-		// ¼­¹ö¿¡ Á¢¼ÓÇÏ´Â °´Ã¼ÀÌ´Ù.
+		// ì„œë²„ì— ì ‘ì†í•˜ëŠ” ê°ì²´ì´ë‹¤.
 		Socket s = new Socket(ia,12000);
-		//¼­¹ö¿¡¼­ º¸³½ µ¥ÀÌÅÍ ¹Ş±â
+		//ì„œë²„ì—ì„œ ë³´ë‚¸ ë°ì´í„° ë°›ê¸°
 		InputStream is = s.getInputStream(); // byte
 		InputStreamReader isr = new InputStreamReader(is); // cahr
 		BufferedReader br = new BufferedReader(isr); // line
 		
 		String data = br.readLine();
-		System.out.println("¼­¹ö¿¡¼­ ¹ŞÀº ¹®ÀÚ--->"+data);
+		System.out.println("ì„œë²„ì—ì„œ ë°›ì€ ë¬¸ì--->"+data);
 		
 		
-		// Å¬¶óÀÌ¾ğÆ®°¡ ¼­¹ö¿¡°Ô µ¥ÀÌÅÍ º¸³»±â
+		// í´ë¼ì´ì–¸íŠ¸ê°€ ì„œë²„ì—ê²Œ ë°ì´í„° ë³´ë‚´ê¸°
 		OutputStream os = s.getOutputStream();
 		OutputStreamWriter osw = new OutputStreamWriter(os);
 		PrintWriter pw = new PrintWriter(osw);
 		
-		pw.println("ÇÏÀÌ...... server!!!!");
+		pw.println("í•˜ì´...... server!!!!");
 		pw.flush();
 		br.close();
 		pw.close();
 		
-		System.out.println("¼­¹ö¿¡°Ô ¹®ÀÚ¸¦ º¸³Â½À´Ï´Ù");
+		System.out.println("ì„œë²„ì—ê²Œ ë¬¸ìë¥¼ ë³´ëƒˆìŠµë‹ˆë‹¤");
 		}catch(Exception e) {e.printStackTrace();}
 	}
 

@@ -11,33 +11,33 @@ import java.net.Socket;
 public class ServerSocketTest {
 
 	public ServerSocketTest() {
-			try {//								Æ÷Æ®¹øÈ£
+			try {//								í¬íŠ¸ë²ˆí˜¸
 				
 			ServerSocket ss = new ServerSocket(12000);
 			
-			//Å¬¶óÀÌ¾ðÆ®°¡ Á¢¼Ó ÇÒ ¶§ ±îÁö ´ë±âÇÏ°í ÀÖ´Ù.
-			//Å¬¶óÀÌ¾ðÆ®°¡ Á¢¼ÓÀ» ÇÏ¸é Socket°´Ã¼¸¦ ¸®ÅÏÇØÁØ´Ù
-			System.out.println("Á¢¼Ó ´ë±âÁß");
+			//í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì† í•  ë•Œ ê¹Œì§€ ëŒ€ê¸°í•˜ê³  ìžˆë‹¤.
+			//í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì†ì„ í•˜ë©´ Socketê°ì²´ë¥¼ ë¦¬í„´í•´ì¤€ë‹¤
+			System.out.println("ì ‘ì† ëŒ€ê¸°ì¤‘");
 			Socket s = ss.accept();
 			
-			System.out.println("Å¬¶óÀÌ¾ðÆ®°¡ Á¢¼ÓÇÏ¿´½À´Ï´Ù");
-			//Å¬¶óÀÌ¾ðÆ®°¡ Á¢¼ÓÇÏ¸é Á¢¼ÓÀÚÀÇ ÄÄÇ»ÅÍ ip¸¦ indetAddress °´Ã¼·Î °¡Áø´Ù
+			System.out.println("í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì†í•˜ì˜€ìŠµë‹ˆë‹¤");
+			//í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì†í•˜ë©´ ì ‘ì†ìžì˜ ì»´í“¨í„° ipë¥¼ indetAddress ê°ì²´ë¡œ ê°€ì§„ë‹¤
 			InetAddress ia = s.getInetAddress();
-			System.out.println("Á¢¼ÓÀÚÀÇ ip="+ia.getHostAddress());
-			//¼­¹ö°¡ Á¢¼ÓÀÚ¿¡°Ô ¹®ÀÚº¸³»±â
+			System.out.println("ì ‘ì†ìžì˜ ip="+ia.getHostAddress());
+			//ì„œë²„ê°€ ì ‘ì†ìžì—ê²Œ ë¬¸ìžë³´ë‚´ê¸°
 			OutputStream os = s.getOutputStream(); //byte
 			OutputStreamWriter osw = new OutputStreamWriter(os);//char
 			PrintWriter pw = new PrintWriter(osw);
-			pw.println("¾È³ç..... ³­ ¼­¹ö¾ß...");
+			pw.println("ì•ˆë…•..... ë‚œ ì„œë²„ì•¼...");
 			pw.flush();
-			System.out.println("Å¬¶óÀÌ¾ðÆ®¿¡°Ô ¹®ÀÚ¸¦ º¸³Â½À´Ï´Ù....");
+			System.out.println("í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë¬¸ìžë¥¼ ë³´ëƒˆìŠµë‹ˆë‹¤....");
 			
-			// Å¬¶óÀÌ¾ðÆ®°¡ º¸³½ ¹®ÀÚ ¹Þ±â
+			// í´ë¼ì´ì–¸íŠ¸ê°€ ë³´ë‚¸ ë¬¸ìž ë°›ê¸°
 			InputStream is = s.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
 			String data = br.readLine();
-			System.out.println("Å¬¶óÀÌ¾ðÆ®¿¡¼­ º¸³½ ¹®ÀÚ--->"+data);
+			System.out.println("í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë³´ë‚¸ ë¬¸ìž--->"+data);
 			pw.close();
 			br.close();
 			

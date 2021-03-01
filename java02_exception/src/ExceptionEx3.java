@@ -20,7 +20,7 @@ public class ExceptionEx3 {
 //
 			} catch (Exception e) {
 
-				System.out.println("Å¬·¡½º Ä³½ºÆÃ ¿¡·¯");
+				System.out.println("í´ë˜ìŠ¤ ìºìŠ¤íŒ… ì—ëŸ¬");
 
 			}  
 	}
